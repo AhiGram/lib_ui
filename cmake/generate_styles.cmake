@@ -1,4 +1,11 @@
 function(generate_styles target_name src_loc style_files dependent_style_files)
+    # Optional 5th parameter for additional icon paths
+    if(ARGC GREATER 4)
+        set(additional_icon_paths ${ARGV4})
+    else()
+        set(additional_icon_paths "")
+    endif()
+
     set(gen_dst ${CMAKE_CURRENT_BINARY_DIR}/gen)
     file(MAKE_DIRECTORY ${gen_dst})
 
@@ -26,6 +33,7 @@ function(generate_styles target_name src_loc style_files dependent_style_files)
         -I${src_loc}
         -I${submodules_loc}/lib_ui
         -I${submodules_loc}/Resources
+        ${additional_icon_paths}
         -o${gen_dst}/styles
         -t${gen_dst}/styles/${target_name}_style
         -w${CMAKE_CURRENT_SOURCE_DIR}
