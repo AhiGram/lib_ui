@@ -1,5 +1,4 @@
 function(generate_styles target_name src_loc style_files dependent_style_files)
-    # Optional 5th parameter for additional icon paths
     if(ARGC GREATER 4)
         set(additional_icon_paths ${ARGV4})
     else()
